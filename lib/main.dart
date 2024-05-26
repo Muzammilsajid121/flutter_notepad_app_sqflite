@@ -35,16 +35,17 @@ class MyApp extends StatelessWidget {
             bodyLarge: GoogleFonts.aBeeZee(fontSize: 17,  fontWeight: FontWeight.w600, color: Colors.black),
             // //
             titleMedium: GoogleFonts.aBeeZee(fontSize: 23, color: Colors.black , fontWeight: FontWeight.bold),
-            titleLarge: GoogleFonts.aBeeZee(fontSize: 35, color: Colors.black , fontWeight: FontWeight.bold),
+            titleLarge: GoogleFonts.montserrat(fontSize: 28, color: Colors.white , fontWeight: FontWeight.w700),
 
 
         ),
           appBarTheme:  const  AppBarTheme(
-            backgroundColor: Color.fromARGB(255, 250, 157, 150), foregroundColor: Colors.yellow),
+            // titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, fontFamily: ),
+            backgroundColor: Color.fromARGB(255, 253, 183, 178), foregroundColor: Color.fromARGB(255, 255, 1, 77)),
 
       
        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
       home: const HomeScreen(),

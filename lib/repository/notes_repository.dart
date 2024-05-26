@@ -58,6 +58,17 @@ class NotesRepository{
       return Note.fromMap(maps[i]);
     });
   }
+   
+   //UPDATE NOTES
+   static Future<int> update({required Note note}) async {
+    Database db = await NotesRepository().database;
+    return await db.update(
+      tableName,
+      note.toMap(),
+      where: 'id = ?',
+      whereArgs: [note.id],
+    );
+  }
 
 
 

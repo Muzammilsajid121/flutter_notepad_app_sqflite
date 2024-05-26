@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Screen"),
+        title:  Text("My Notes", style: Theme.of(context).textTheme.titleMedium,),
         centerTitle: true,
       ),
       body: FutureBuilder<List<Note>>(
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
 
-      
+
     );
   }
 }
