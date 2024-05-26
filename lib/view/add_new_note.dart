@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_notepad_app_sqflite/models/notes.dart';
 import 'package:flutter_notepad_app_sqflite/repository/notes_repository.dart';
+import 'package:flutter_notepad_app_sqflite/widgets/snackbar.dart';
 
 class AddNewNote extends StatefulWidget {
   final Note? note;
@@ -35,9 +36,11 @@ class _AddNewNoteState extends State<AddNewNote> {
       await NotesRepository.update(note: note);
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Note saved successfully!')),
-    );
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   const SnackBar(content: Text('Note saved successfully!')),
+    // );
+    ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Saved Successfully'));
+
 
     Navigator.pop(context, true); // Pass true to indicate a note was added or updated
   }

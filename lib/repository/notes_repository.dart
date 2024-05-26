@@ -58,6 +58,16 @@ class NotesRepository{
       return Note.fromMap(maps[i]);
     });
   }
+
+  //DELETE NOTES
+    static Future<int> delete(int id) async {
+    Database db = await NotesRepository().database;
+    return await db.delete(
+      tableName,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
    
    //UPDATE NOTES
    static Future<int> update({required Note note}) async {

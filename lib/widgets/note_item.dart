@@ -14,15 +14,12 @@ class NoteItem extends StatelessWidget {
   final DateFormat formatter = DateFormat('MMM dd, yyyy');
   final String formattedDate = formatter.format(note.createdAt);
 
-    return  Padding(
-      padding:  EdgeInsets.all(8.0),
+    return   Padding(padding: EdgeInsets.all(8.0),
 
       child:   InkWell(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: ((context) => AddNewNote(note: note,))));
         },
-
-
 
         child: ListTile(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

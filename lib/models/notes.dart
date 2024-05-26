@@ -1,4 +1,3 @@
-import 'package:flutter_notepad_app_sqflite/repository/notes_repository.dart';
 
 class Note{
 
@@ -31,13 +30,6 @@ class Note{
       title: map['title'], 
       description: map['description'], 
       createdAt: DateTime.parse(map['createdAt']) );
-      
-      
-    
-   }
-
-
-  
-
+      }
 
 }
