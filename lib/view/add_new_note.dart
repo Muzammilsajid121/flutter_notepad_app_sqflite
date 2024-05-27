@@ -14,6 +14,7 @@ class AddNewNote extends StatefulWidget {
 class _AddNewNoteState extends State<AddNewNote> {
   late TextEditingController titleController;
   late TextEditingController descriptionController;
+  String? errorMessage;
 
   @override
   void initState() {
@@ -23,6 +24,13 @@ class _AddNewNoteState extends State<AddNewNote> {
   }
 
   Future<void> saveNote() async {
+    if (titleController.text.trim().isEmpty) {
+      setState(() {
+        errorMessage = 'Enter title';
+      });
+      return; // Stop execution if title is empty
+    }
+
     final note = Note(
       id: widget.note?.id,
       title: titleController.text,
@@ -31,17 +39,12 @@ class _AddNewNoteState extends State<AddNewNote> {
     );
 
     if (widget.note == null) {
-      await NotesRepository.insert(note: note);
+      await NotesRepository.insertNotes(note: note);
     } else {
-      await NotesRepository.update(note: note);
+      await NotesRepository.updateNotes(note: note);
     }
 
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(content: Text('Note saved successfully!')),
-    // );
     ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Saved Successfully'));
-
-
     Navigator.pop(context, true); // Pass true to indicate a note was added or updated
   }
 
@@ -51,11 +54,19 @@ class _AddNewNoteState extends State<AddNewNote> {
       appBar: AppBar(
         title: Text(widget.note == null ? "Add New Note" : "Edit Note", style: Theme.of(context).textTheme.titleMedium),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: saveNote,
+            icon: const Icon(Icons.check),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+
+            //Title Text field
             TextField(
               controller: titleController,
               decoration: InputDecoration(
@@ -64,11 +75,13 @@ class _AddNewNoteState extends State<AddNewNote> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
+                errorText: errorMessage, // Display error message in TextField
               ),
             ),
 
             const SizedBox(height: 20),
-            
+
+            //Description Text field
             Expanded(
               child: TextField(
                 maxLines: 50,
@@ -79,21 +92,13 @@ class _AddNewNoteState extends State<AddNewNote> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                alignLabelWithHint: true, // Align label with the top of the TextField
-
+                  alignLabelWithHint: true,
                 ),
               ),
             ),
-            const SizedBox(height: 6,),
+            
+            const SizedBox(height: 20),
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: saveNote,
-         style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 253, 183, 178)),
-         child: const Text('Save Note'),
-              ),
-            ),
           ],
         ),
       ),
