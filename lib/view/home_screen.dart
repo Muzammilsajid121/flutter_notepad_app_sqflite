@@ -24,11 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> refreshNotes() async {
     setState(() {
       notesFuture = NotesRepository().getNotes();
+      // NotesRepository().getNotes();
     });
   }
 
   Future<void> deleteNote(Note note) async {
-    await NotesRepository.delete(note.id!);
+    await NotesRepository.deleteNotes(note.id!);
     refreshNotes();
   }
 
@@ -36,10 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text("My Notes",  style: Theme.of(context).textTheme.titleMedium),
+        title: Text("My Notes", style: Theme.of(context).textTheme.titleMedium),
         centerTitle: true,
       ),
-      
       body: FutureBuilder<List<Note>>(
         future: notesFuture,
         builder: (context, snapshot) {
@@ -53,14 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(top: 16.0),
             child: ListView(
               children: snapshot.data!.map((note) {
-                //swipe tp delete
                 return Dismissible(
                   key: Key(note.id.toString()),
                   direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
                     deleteNote(note);
-                  //custom snackbar
-                  ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Deleted Successfully'));
+                    ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Deleted Successfully'));
                   },
                   background: Container(
                     color: const Color.fromARGB(255, 248, 185, 180),

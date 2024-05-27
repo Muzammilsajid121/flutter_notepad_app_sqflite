@@ -2,24 +2,20 @@ import 'package:flutter_notepad_app_sqflite/models/notes.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class NotesRepository{
+class NotesRepository {
   static Database? _database;
-  static const  dbName = 'notesDatabase';
-  static const  tableName = 'notesTable';
-  static const  dbVersion = 5;
+  static const dbName = 'notesDatabase';
+  static const tableName = 'notesTable';
+  static const dbVersion = 1;
 
-    Future<Database> get database async {
+  Future<Database> get database async {
     if (_database != null) return _database!;
-
     _database = await initDatabase();
     return _database!;
   }
 
-
- 
-  //DATABASE FUNC
-    Future<Database> initDatabase() async {
-    String path = join( await getDatabasesPath(), dbName);
+  Future<Database> initDatabase() async {
+    String path = join(await getDatabasesPath(), dbName);
     return await openDatabase(path, version: dbVersion, onCreate: _createDb);
   }
 
@@ -31,36 +27,29 @@ class NotesRepository{
         title TEXT,
         description TEXT,
         createdAt TEXT
-        
       )
-    '''
+      '''
     );
   }
 
-  
-   //INSERT FUNCTION
-    static Future <int> insert({required Note note}) async {
+  static Future<int> insertNotes({required Note note}) async {
     Database db = await NotesRepository().database;
     return await db.insert(
-      tableName, 
-       note.toMap(), //toMap func is calling here which is in notes_repo.
-    conflictAlgorithm: ConflictAlgorithm.replace
-    ); 
+      tableName,
+      note.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
-
-    //GET FUNC
-    Future<List<Note>> getNotes() async {
+  Future<List<Note>> getNotes() async {
     Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
-
     return List.generate(maps.length, (i) {
       return Note.fromMap(maps[i]);
     });
   }
 
-  //DELETE NOTES
-    static Future<int> delete(int id) async {
+  static Future<int> deleteNotes(int id) async {
     Database db = await NotesRepository().database;
     return await db.delete(
       tableName,
@@ -68,9 +57,8 @@ class NotesRepository{
       whereArgs: [id],
     );
   }
-   
-   //UPDATE NOTES
-   static Future<int> update({required Note note}) async {
+
+  static Future<int> updateNotes({required Note note}) async {
     Database db = await NotesRepository().database;
     return await db.update(
       tableName,
@@ -79,9 +67,4 @@ class NotesRepository{
       whereArgs: [note.id],
     );
   }
-
-
-
-
-
 }
