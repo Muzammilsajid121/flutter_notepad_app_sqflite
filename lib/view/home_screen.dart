@@ -4,6 +4,7 @@ import 'package:flutter_notepad_app_sqflite/repository/notes_repository.dart';
 import 'package:flutter_notepad_app_sqflite/view/add_new_note.dart';
 import 'package:flutter_notepad_app_sqflite/widgets/note_item.dart';
 import 'package:flutter_notepad_app_sqflite/widgets/snackbar.dart';
+import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> refreshNotes() async {
     setState(() {
       notesFuture = NotesRepository().getNotes();
-      // NotesRepository().getNotes();
     });
   }
 
@@ -44,10 +44,13 @@ class _HomeScreenState extends State<HomeScreen> {
         future: notesFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(strokeWidth: 1,color: Colors.green,));
           }
           if (snapshot.data == null || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No notes available'));
+            return   Center(
+              child: LottieBuilder.asset( "assets/notepaddy1.json", height: 300, ),
+            );
+            // const Center(child: Text('No notes available'));
           }
           return Padding(
             padding: const EdgeInsets.only(top: 16.0),
