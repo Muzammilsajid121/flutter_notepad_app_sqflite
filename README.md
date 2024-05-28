@@ -1,16 +1,40 @@
-# flutter_notepad_app_sqflite
+Notepaddy - A Flutter Notepad App with SQFlite <img src="projectphotos/logo.png" alt="Notepaddy" width="40" height="40">
 
-A new Flutter project.
+Overview
+Introducing Notepaddy, your ultimate notepad app built with Flutter and SQFlite! 📒 Offering a seamless user experience with an intuitive UI, Notepaddy makes note-taking efficient and enjoyable.
 
-## Getting Started
+Features
+📝 Add and Edit Notes: Create new notes or edit existing ones effortlessly.
 
-This project is a starting point for a Flutter application.
+📅 Date and Time Stamping: Automatically timestamps your notes for easy reference.
 
-A few resources to get you started if this is your first Flutter project:
+📂 Organize Your Notes: Sort and manage your notes effectively.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📲 User-Friendly Interface: Enjoy a sleek, modern design that is easy to navigate.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+💞 Slide to delete notes: Delete notes in a elegant way
+
+Screenshots
+<img src="projectphotos/notepaddy1.png" height="600px"> <img src="projectphotos/notepaddy2.png" height="600px">
+
+<img src="projectphotos/notepaddy3.png" height="600px"> <img src="projectphotos/notepaddy4.png" height="600px">
+
+<!-- <img src="projectphotos/5.png" height="600px"> <img src="projectphotos/6.png" height="600px"> -->
+
+How to Use
+Installation:
+
+Clone the repository.
+Install dependencies using flutter pub get.
+Run the App:
+Use flutter run to launch the application on your emulator or connected device.
+
+Technologies Used :
+Flutter
+Dart
+SQFlite
+
+Contributions :
+We welcome contributions from the community to enhance Notepaddy's functionality, add new features, or improve the user interface. If you have ideas or improvements, please feel free to submit a pull request.
+
+Happy Note-taking! 📝✨

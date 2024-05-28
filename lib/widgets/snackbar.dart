@@ -32,10 +32,10 @@ SnackBar customSnackbar(String title) {
     backgroundColor: const Color.fromARGB(255, 253, 183, 178),
     elevation: 1,
     shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(1.0), ),
-    duration: Duration(milliseconds: 800),
+    duration: const Duration(milliseconds: 800),
 
     content: Text(title,
-      style: GoogleFonts.montserrat( // You can replace 'roboto' with any other Google Font
+      style: GoogleFonts.montserrat( 
         textStyle: const TextStyle(
       color: Colors.black, fontSize: 17, fontWeight: FontWeight.w600,   ), )),
 

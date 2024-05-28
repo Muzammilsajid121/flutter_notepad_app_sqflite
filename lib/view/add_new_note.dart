@@ -40,11 +40,12 @@ class _AddNewNoteState extends State<AddNewNote> {
 
     if (widget.note == null) {
       await NotesRepository.insertNotes(note: note);
+      ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Saved Successfully'));
     } else {
       await NotesRepository.updateNotes(note: note);
+      ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Updated Successfully'));
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(customSnackbar('Note Saved Successfully'));
     Navigator.pop(context, true); // Pass true to indicate a note was added or updated
   }
 
@@ -65,8 +66,6 @@ class _AddNewNoteState extends State<AddNewNote> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-
-            //Title Text field
             TextField(
               controller: titleController,
               decoration: InputDecoration(
@@ -78,10 +77,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                 errorText: errorMessage, // Display error message in TextField
               ),
             ),
-
             const SizedBox(height: 20),
-
-            //Description Text field
             Expanded(
               child: TextField(
                 maxLines: 50,
@@ -96,9 +92,7 @@ class _AddNewNoteState extends State<AddNewNote> {
                 ),
               ),
             ),
-            
             const SizedBox(height: 20),
-
           ],
         ),
       ),
