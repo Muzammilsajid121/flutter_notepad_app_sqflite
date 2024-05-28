@@ -11,10 +11,12 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  final DateFormat formatter = DateFormat('MMM dd, yyyy');
-  final String formattedDate = formatter.format(note.createdAt);
+    final DateFormat dateFormatter = DateFormat('MMM dd, yyyy');
+    final DateFormat timeFormatter = DateFormat('hh:mm a'); // 12-hour format with AM/PM
+    final String formattedDate = dateFormatter.format(note.createdAt);
+    final String formattedTime = timeFormatter.format(note.createdAt); // Formatted time
 
-    return   Padding(padding: EdgeInsets.all(8.0),
+    return   Padding(padding: const EdgeInsets.all(8.0),
 
       child:   InkWell(
         onTap: () {
@@ -26,7 +28,7 @@ class NoteItem extends StatelessWidget {
           leading:   Text(formattedDate,  style: Theme.of(context).textTheme.bodySmall, ) ,
           title:     Text(note.title, style: Theme.of(context).textTheme.bodyLarge,maxLines: 1, overflow: TextOverflow.ellipsis,),
           subtitle:  Text(note.description, style: Theme.of(context).textTheme.bodyMedium,maxLines: 1,overflow: TextOverflow.ellipsis,),
-          trailing:  Text(DateFormat.Hm().format(note.createdAt), style: Theme.of(context).textTheme.bodySmall,),
+          trailing:  Text(formattedTime, style: Theme.of(context).textTheme.bodySmall,),
         
           tileColor: Colors.red[50],
           
