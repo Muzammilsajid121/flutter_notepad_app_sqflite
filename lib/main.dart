@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
 
         ),
           appBarTheme:  const  AppBarTheme(
-            // titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, fontFamily: ),
+            // titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,),
             backgroundColor: Color.fromARGB(255, 253, 183, 178), foregroundColor: Color.fromARGB(255, 255, 1, 77)),
 
       
